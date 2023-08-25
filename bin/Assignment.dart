@@ -1,9 +1,13 @@
+/**
+                    ASSIGNMET MODULE : 04
+                    AUTHOR : MAJEDUL ISLAM
+**/
 abstract class Account{
   int ? accountNumber;
   double balance=0.0;
  void deposit(double amount){
        balance=balance+amount;
-       print(balance);
+       print("Deposit: $amount and Balance: $balance");
   }
  void withdraw(double amount);
 }
@@ -17,7 +21,7 @@ class SavingsAccount extends Account{
  void withdraw(double amount){
          balance=balance-amount;
          balance=balance+(balance*(interestRate/100));
-         print(balance);
+         print("Withdraw: $amount and Balance: $balance");
   }
 }
 class CurrentAccount extends Account{
@@ -28,9 +32,9 @@ class CurrentAccount extends Account{
   }
   @override
  void withdraw(double amount) {
-      if(amount>=overdraftLimit){
+      if(amount<=overdraftLimit){
        balance=balance-amount;
-       print(balance);
+       print("Withdraw:$amount and Balance: $balance");
       }
       else{
         print("indicating insufficient funds.");
@@ -38,10 +42,10 @@ class CurrentAccount extends Account{
   }
 }
 void main(){
-  SavingsAccount obj1=SavingsAccount(2019331563,5000.0,20.0);
+  SavingsAccount obj1=SavingsAccount(2019331563,5000.0,10.0);
   obj1.deposit(3000.0);
   obj1.withdraw(1000.0);
-  CurrentAccount obj2=CurrentAccount(2019331563,5000.00,60000.0);
+  CurrentAccount obj2=CurrentAccount(2019331563,5000.0,60000.0);
   obj2.deposit(2000.0);
   obj2.withdraw(1000.0);
 }
